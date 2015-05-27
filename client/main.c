@@ -34,7 +34,7 @@ printf("socket ok !\r\n");
 /* 构造服务器端的ip和端口信息，具体结构体可以查资料 */  
 bzero(&s_add,sizeof(struct sockaddr_in));  
 s_add.sin_family=AF_INET;  
-s_add.sin_addr.s_addr= inet_addr("192.168.1.104"); /* ip转换为4字节整形，使用时需要根据服务端ip进行更改 */  
+s_add.sin_addr.s_addr= inet_addr("127.0.0.1"); /* ip转换为4字节整形，使用时需要根据服务端ip进行更改 */  
 s_add.sin_port=htons(portnum); /* 这里htons是将short型数据字节序由主机型转换为网络型，其实就是 
     将2字节数据的前后两个字节倒换，和对应的ntohs效果、实质相同，只不过名字不同。htonl和ntohl是 
     操作的4字节整形。将0x12345678变为0x78563412，名字不同，内容两两相同，一般情况下网络为大端， 
