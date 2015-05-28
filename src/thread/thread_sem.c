@@ -69,10 +69,7 @@ void *thrd_func(void *arg){
 
     printf("Thread %d is exiting.\n",thrd_num);
     
-    // .........V..
-    // ...............1.....0
-    // ............
     sem_post(&sem[(thrd_num+THREAD_NUM-1)%THREAD_NUM]);
 
-    pthread_exit(NULL); // ......
+    pthread_exit(NULL); 
 }

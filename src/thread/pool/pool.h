@@ -7,7 +7,7 @@ struct job{
 	struct job *next;
 };
 
-struct threadPool{
+struct thread_pool{
 	int thread_num;
 	int queue_max_num;
 	struct job *head;
@@ -22,8 +22,8 @@ struct threadPool{
 	int pool_close;
 };
 
-struct threadPool* pool_init(int thread_num,int queue_max_num);
-int pool_add_job(struct threadPool  *pool,void*(*callback)(void *arg),void *arg);
-int pool_destory(struct threadPool *pool);
-void* pool_function(void *arg);
+struct thread_pool* pool_init(int thread_num,int queue_max_num);
+int pool_add_job(struct thread_pool  *pool,void*(*callback)(void *arg),void *arg);
+int pool_destory(struct thread_pool *pool);
+void* thread_func(void *arg);
 #endif
