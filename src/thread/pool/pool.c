@@ -135,7 +135,7 @@ int pool_destroy(struct thread_pool *pool)
 {
     assert(pool != NULL);
     pthread_mutex_lock(&(pool->mutex));
-    if (pool->queue_close || pool->pool_close)   
+    if (pool->queue_close || pool->pool_close){   
         pthread_mutex_unlock(&(pool->mutex));
         return -1;
     }
@@ -165,8 +165,8 @@ int pool_destroy(struct thread_pool *pool)
     while (pool->head != NULL)
     {
         pjob = pool->head;
-        pool->head = p->next;
-        free(p);
+        pool->head = pjob->next;
+        free(pjob);
     }
     free(pool);
     return 0;

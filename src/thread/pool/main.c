@@ -4,7 +4,7 @@ void* work(void* arg)
 {
     char *p = (char*) arg;
     printf("thread_pool callback fuction : %s.\n", p);
-    sleep(1);
+    sleep(10);
 }
 
 int main(void)
