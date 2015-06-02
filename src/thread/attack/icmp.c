@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
             fprintf(stderr, "Error during packet send.\n");
             perror("sendto() error");
         }else
-            printf("send packgets %d to %s is OK.\n",argv[2],i);
+            printf("send packgets %d to %s is OK.\n",i,argv[2]);
  
         close(sockfd);
         usleep(PACKET_DELAY);
