@@ -82,8 +82,7 @@ int main(int argc, char *argv[])
     if(argc == 4)
         num = atoi(argv[3]);
  
-    // Loop based on the packet number
-    for(i = 1; num == 0 ? num == 0 : i <= num; i++){
+    
         // Clear data paylod
         memset(buf, 0, sizeof(buf));
  
@@ -115,15 +114,16 @@ int main(int argc, char *argv[])
  
         dst.sin_addr = ip->ip_dst;
         dst.sin_family = AF_INET;
- 
+ 	// Loop based on the packet number
+    for(i = 1; num == 0 ? num == 0 : i <= num; i++){
         if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)&dst, sizeof(dst)) < 0){
             fprintf(stderr, "Error during packet send.\n");
             perror("sendto() error");
         }else
             printf("send packgets %d to %s is OK.\n",i,argv[2]);
- 
-        close(sockfd);
+
         usleep(PACKET_DELAY);
     }
+    close(sockfd);
     return 0;
 }
