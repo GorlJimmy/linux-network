@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
             fprintf(stderr, "Error during packet send.\n");
             perror("sendto() error");
         }else
-            printf("send packgets %d to %s is OK.\n",i,argv[2]);
+            printf("%s send packgets %d to %s is OK.\n",inet_ntoa(ip->ip_src.s_addr),i,argv[2]);
 
         usleep(PACKET_DELAY);
     }
