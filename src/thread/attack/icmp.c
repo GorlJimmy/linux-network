@@ -22,7 +22,7 @@ static char *usage = "\nUsage: ./icmp_flood <saddr> <daddr> <# packets>\n \
 	<daddr> = target IP address\n \
 	<# packets> = is the number of packets to send, 100 is the default, 0 = infinite\n";
  
-static void set_ip_layer_fields(struct icmphdr *icmp, struct ip *ip)
+static void set_ip_layer_fields(struct ip *ip)
 {
     // IP Layer
     ip->ip_v = 4;
