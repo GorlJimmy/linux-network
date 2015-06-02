@@ -9,6 +9,7 @@
 #include <netinet/ip_icmp.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <syslog.h>
  
 #define BUFFER_SIZE 400
 #define PACKET_DELAY 30
@@ -44,17 +45,20 @@ static void set_ip_layer_fields(struct ip *ip)
  
 static void set_socket_options(int sockfd)
 {
+    openlog("setSocketOptions",LOG_CONS | LOG_PID, 0);
     const int on = 1;
  
     // Enable broadcast
     if(setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &on, sizeof(on)) < 0){
-        perror("setsockopt() for BROADCAST error");
+        syslog(LOG_USER, "setsockopt for BROADCAST error");
+        closelog();
         exit(1);
     }
  
     // socket options, tell the kernel we provide the IP structure 
     if(setsockopt(sockfd, IPPROTO_IP, IP_HDRINCL, &on, sizeof(on)) < 0){
-        perror("setsockopt() for IP_HDRINCL error");
+        syslog(LOG_USER, "setsockopt for IP_HDRINCL error");
+        closelog();
         exit(1);
     }	
 }
@@ -116,7 +120,7 @@ int main(int argc, char *argv[])
             fprintf(stderr, "Error during packet send.\n");
             perror("sendto() error");
         }else
-            printf("sendto() is OK.\n");
+            printf("send packgets %d to %s is OK.\n",argv[2],i);
  
         close(sockfd);
         usleep(PACKET_DELAY);
