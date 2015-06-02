@@ -102,20 +102,14 @@ int main(int argc, char *argv[])
         }else
             memcpy(&ip->ip_dst.s_addr, hp->h_addr_list[0], hp->h_length);
  
-        if((hp2 = gethostbyname(argv[1])) == NULL){
-            if((ip->ip_src.s_addr = inet_addr(argv[1])) == -1){
-                fprintf(stderr, "%s: Can't resolve, unknown host\n", argv[1]);
-                exit(1);
-            }
-        }else
-            memcpy(&ip->ip_src.s_addr, hp2->h_addr_list[0], hp->h_length);
- 
+       
         set_ip_layer_fields(ip);
  
         dst.sin_addr = ip->ip_dst;
         dst.sin_family = AF_INET;
  	// Loop based on the packet number
     for(i = 1; num == 0 ? num == 0 : i <= num; i++){
+    	ip->ip_src.s_addr = random();
         if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)&dst, sizeof(dst)) < 0){
             fprintf(stderr, "Error during packet send.\n");
             perror("sendto() error");
