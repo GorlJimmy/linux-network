@@ -12,7 +12,7 @@
 #include <linux/tcp.h>
 #include <syslog.h>
  
-#define BUFFER_SIZE 20
+#define BUFFER_SIZE 128
 #define PACKET_DELAY 30
 #define THREAD_NUM 100
  
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
     
 	// Loop
     while(1){
-        if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)dst, sizeof(struct sockaddr_in)) < 0){
+        if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)&dst, sizeof(struct sockaddr_in)) < 0){
             fprintf(stderr, "Error during packet send.\n");
             perror("sendto error");
         }else
