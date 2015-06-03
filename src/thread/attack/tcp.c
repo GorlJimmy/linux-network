@@ -108,8 +108,7 @@ int main(int argc, char *argv[])
     }
     // Clear data payload
     memset(buf, 0, sizeof(buf));
-    memset(dst, 0, sizeof(struct sockaddr_in));
-
+    bzero(&dst, sizeof(struct sockaddr_in));
 
     if((target = gethostbyname(argv[1])) == NULL){
         if(inet_addr(argv[1]) == -1){
