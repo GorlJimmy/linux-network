@@ -46,7 +46,7 @@ static unsigned short check_sum(unsigned short *addr,int len){
         return(answer);
 }
 
-static void set_ip_header(struct sockaddr_in dst)
+static void set_ip_header(struct sockaddr_in *dst)
 {
     struct ip *ip = (struct ip *)buf;
     // IP Layer
@@ -63,7 +63,7 @@ static void set_ip_header(struct sockaddr_in dst)
     ip->ip_sum = 0; /* Let kernel fill in */
  }
 
- static void set_tcp_header(struct sockaddr_in dst){
+ static void set_tcp_header(struct sockaddr_in *dst){
     // TCP Layer
     tcp = (struct tcphdr*)(buf + sizeof(struct ip));
     tcp->source = htons(8888);
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
     int sockfd;
     
     struct hostent *target;
-    struct sockaddr_in dst;
+    struct sockaddr_in *dst;
  
     if(argc != 4){
         fprintf(stdout, "%s\n",usage);
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     }
     // Clear data payload
     memset(buf, 0, sizeof(buf));
-    memset(&dst,0,sizeof(struct sockaddr_in));
+    memset(dst,0,sizeof(struct sockaddr_in));
 
 
     if((target = gethostbyname(argv[1])) == NULL){
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
 
     set_socket_options(sockfd);
    
-    set_ip_header(dst);
+    set_ip_header(&dst);
     
 	// Loop
     while(1){
