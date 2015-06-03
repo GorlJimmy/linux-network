@@ -1,0 +1,125 @@
+hz_exit	modules\proc\proc.c	/^hz_exit(void)$/;"	f	file:
+hz_exit	modules\proc\proc.c	/^module_exit(hz_exit);$/;"	v
+hz_fops	modules\proc\proc.c	/^static const struct file_operations hz_fops = {$/;"	v	typeref:struct:file_operations	file:
+hz_init	modules\proc\proc.c	/^hz_init(void)$/;"	f	file:
+hz_init	modules\proc\proc.c	/^module_init(hz_init);$/;"	v
+hz_open	modules\proc\proc.c	/^hz_open(struct inode *inode, struct file *file)$/;"	f	file:
+hz_show	modules\proc\proc.c	/^hz_show(struct seq_file *m, void *v)$/;"	f	file:
+mylibfoo	modules\share\foo.c	/^mylibfoo()$/;"	f
+globalvar1	modules\share\mem.c	/^int globalvar1;$/;"	v
+globalvar2	modules\share\mem.c	/^int globalvar2 = 3;$/;"	v
+main	modules\share\mem.c	/^int main(){$/;"	f
+mylocalfoo	modules\share\mem.c	/^void mylocalfoo(){$/;"	f
+NTHREADS	modules\sync\sharelist.c	10;"	d	file:
+ato_count	modules\sync\sharelist.c	/^static atomic_t ato_count = ATOMIC_INIT(0);   $/;"	v	file:
+count	modules\sync\sharelist.c	/^static long count = 0;   $/;"	v	file:
+id	modules\sync\sharelist.c	/^	int id;  $/;"	m	struct:share_struct	file:
+kthread_launcher	modules\sync\sharelist.c	/^void kthread_launcher(struct work_struct *q)  $/;"	f
+list	modules\sync\sharelist.c	/^	struct list_head list;  $/;"	m	struct:share_struct	typeref:struct:share_struct::list_head	file:
+list_len	modules\sync\sharelist.c	/^static unsigned int list_len = 0;  $/;"	v	file:
+pid	modules\sync\sharelist.c	/^	int pid;  $/;"	m	struct:share_struct	file:
+qt_task	modules\sync\sharelist.c	/^void qt_task(unsigned long data)  $/;"	f
+qt_timer	modules\sync\sharelist.c	/^static struct timer_list qt_timer; \/* timer queue *\/  $/;"	v	typeref:struct:timer_list	file:
+queue	modules\sync\sharelist.c	/^static struct work_struct queue; \/* work queue *\/ $/;"	v	typeref:struct:work_struct	file:
+share_exit	modules\sync\sharelist.c	/^module_exit(share_exit);$/;"	v
+share_exit	modules\sync\sharelist.c	/^static void __exit share_exit(void)  $/;"	f	file:
+share_init	modules\sync\sharelist.c	/^module_init(share_init);  $/;"	v
+share_init	modules\sync\sharelist.c	/^static int __init share_init(void)  $/;"	f	file:
+share_struct	modules\sync\sharelist.c	/^struct share_struct {  $/;"	s	file:
+sharelist	modules\sync\sharelist.c	/^static int sharelist(void *data)  $/;"	f	file:
+start_kthread	modules\sync\sharelist.c	/^static void start_kthread(void)  $/;"	f	file:
+timer_over	modules\sync\sharelist.c	/^static int timer_over = 0;  $/;"	v	file:
+test_exit	modules\thread\thread.c	/^module_exit(test_exit);$/;"	v
+test_exit	modules\thread\thread.c	/^static void __exit test_exit(void){$/;"	f	file:
+test_init	modules\thread\thread.c	/^module_init(test_init);$/;"	v
+test_init	modules\thread\thread.c	/^static int __init test_init(void)$/;"	f	file:
+main	src\client\main.c	/^int main(char *args){  $/;"	f
+setDaemon	src\process\daemon\daemon.c	/^void setDaemon(void){$/;"	f
+DAEMON_H	src\process\daemon\daemon.h	2;"	d
+main	src\process\daemon\test.c	/^main() $/;"	f
+setDaemon	src\server\daemon.c	/^void setDaemon(void){$/;"	f
+DAEMON_H	src\server\daemon.h	2;"	d
+main	src\server\main.c	/^int main(void){  $/;"	f
+TYPE_H	src\server\type.h	2;"	d
+BUFFER_SIZE	src\thread\attack\bing_icmp.c	13;"	d	file:
+DEF_NUM_PACKETS	src\thread\attack\bing_icmp.c	15;"	d	file:
+PACKET_DELAY_USEC	src\thread\attack\bing_icmp.c	14;"	d	file:
+buf	src\thread\attack\bing_icmp.c	/^char buf[BUFFER_SIZE];$/;"	v
+main	src\thread\attack\bing_icmp.c	/^int main(int argc, char *argv[])$/;"	f
+set_ip_layer_fields	src\thread\attack\bing_icmp.c	/^void set_ip_layer_fields(struct ip *ip)$/;"	f
+set_socket_options	src\thread\attack\bing_icmp.c	/^void set_socket_options(int s)$/;"	f
+usage	src\thread\attack\bing_icmp.c	/^char *usage = "\\nUsage: .\/icmp_flood <saddr> <daddr> <# packets>\\n \\$/;"	v
+BUFFER_SIZE	src\thread\attack\icmp.c	14;"	d	file:
+PACKET_DELAY	src\thread\attack\icmp.c	15;"	d	file:
+PACK_NUM	src\thread\attack\icmp.c	16;"	d	file:
+THREAD_NUM	src\thread\attack\icmp.c	17;"	d	file:
+buf	src\thread\attack\icmp.c	/^static char buf[BUFFER_SIZE];$/;"	v	file:
+main	src\thread\attack\icmp.c	/^int main(int argc, char *argv[])$/;"	f
+set_ip_layer_fields	src\thread\attack\icmp.c	/^static void set_ip_layer_fields(struct ip *ip)$/;"	f	file:
+set_socket_options	src\thread\attack\icmp.c	/^static void set_socket_options(int sockfd)$/;"	f	file:
+usage	src\thread\attack\icmp.c	/^static char *usage = "\\nUsage: .\/icmp_flood <saddr> <daddr> <# packets>\\n \\$/;"	v	file:
+ICMPLOG_H	src\thread\attack\icmplog.h	2;"	d
+log	src\thread\attack\icmplog.h	/^inline void log(int priority, char* message){$/;"	f
+in_cksum	src\thread\attack\sample.c	/^unsigned short in_cksum(unsigned short *ptr, int nbytes)$/;"	f
+main	src\thread\attack\sample.c	/^int main(int argc, char **argv)$/;"	f
+u16	src\thread\attack\sample.c	/^typedef unsigned short int u16;$/;"	t	file:
+u8	src\thread\attack\sample.c	/^typedef unsigned char u8;$/;"	t	file:
+main	src\thread\pool\main.c	/^int main(void)$/;"	f
+work	src\thread\pool\main.c	/^void* work(void* arg)$/;"	f
+pool_add_job	src\thread\pool\pool.c	/^int pool_add_job(struct thread_pool* pool, void* (*callback)(void *arg), void *arg)$/;"	f
+pool_destroy	src\thread\pool\pool.c	/^int pool_destroy(struct thread_pool *pool)$/;"	f
+pool_init	src\thread\pool\pool.c	/^struct thread_pool* pool_init(int thread_num,int queue_max_num ){$/;"	f
+thread_func	src\thread\pool\pool.c	/^void* thread_func(void* arg)$/;"	f
+POOL_H	src\thread\pool\pool.h	2;"	d
+arg	src\thread\pool\pool.h	/^	void *arg;$/;"	m	struct:job
+callback	src\thread\pool\pool.h	/^	void* (*callback)(void *arg);$/;"	m	struct:job
+head	src\thread\pool\pool.h	/^	struct job *head;$/;"	m	struct:thread_pool	typeref:struct:thread_pool::job
+job	src\thread\pool\pool.h	/^struct job{$/;"	s
+mutex	src\thread\pool\pool.h	/^	pthread_mutex_t mutex;$/;"	m	struct:thread_pool
+next	src\thread\pool\pool.h	/^	struct job *next;$/;"	m	struct:job	typeref:struct:job::job
+pool_close	src\thread\pool\pool.h	/^	int pool_close;$/;"	m	struct:thread_pool
+pthreads	src\thread\pool\pool.h	/^	pthread_t *pthreads;$/;"	m	struct:thread_pool
+queue_close	src\thread\pool\pool.h	/^	int queue_close;$/;"	m	struct:thread_pool
+queue_cur_num	src\thread\pool\pool.h	/^	int queue_cur_num;$/;"	m	struct:thread_pool
+queue_empty	src\thread\pool\pool.h	/^	pthread_cond_t queue_empty;$/;"	m	struct:thread_pool
+queue_max_num	src\thread\pool\pool.h	/^	int queue_max_num;$/;"	m	struct:thread_pool
+queue_not_empty	src\thread\pool\pool.h	/^	pthread_cond_t queue_not_empty;$/;"	m	struct:thread_pool
+queue_not_full	src\thread\pool\pool.h	/^	pthread_cond_t queue_not_full;$/;"	m	struct:thread_pool
+tail	src\thread\pool\pool.h	/^	struct job *tail;$/;"	m	struct:thread_pool	typeref:struct:thread_pool::job
+thread_num	src\thread\pool\pool.h	/^	int thread_num;$/;"	m	struct:thread_pool
+thread_pool	src\thread\pool\pool.h	/^struct thread_pool{$/;"	s
+main	src\thread\thread_canel.c	/^int main(){$/;"	f
+thrd_func1	src\thread\thread_canel.c	/^void *thrd_func1(void *arg){$/;"	f
+thrd_func2	src\thread\thread_canel.c	/^void *thrd_func2(void *arg){$/;"	f
+tid1	src\thread\thread_canel.c	/^pthread_t tid1,tid2;$/;"	v
+tid2	src\thread\thread_canel.c	/^pthread_t tid1,tid2;$/;"	v
+main	src\thread\thread_create.c	/^int main(){$/;"	f
+thread_func	src\thread\thread_create.c	/^void *thread_func(void *arg){$/;"	f
+tid	src\thread\thread_create.c	/^pthread_t tid;$/;"	v
+DELAY	src\thread\thread_delay.c	7;"	d	file:
+REPEAT_TIMES	src\thread\thread_delay.c	6;"	d	file:
+THREAD_NUM	src\thread\thread_delay.c	5;"	d	file:
+main	src\thread\thread_delay.c	/^int main(){$/;"	f
+thrd_func	src\thread\thread_delay.c	/^void *thrd_func(void *arg){$/;"	f
+main	src\thread\thread_equal.c	/^int main(){$/;"	f
+main	src\thread\thread_join.c	/^int main(){$/;"	f
+thrd_func1	src\thread\thread_join.c	/^void *thrd_func1(void *arg){$/;"	f
+thrd_func2	src\thread\thread_join.c	/^void *thrd_func2(void *arg){$/;"	f
+DELAY	src\thread\thread_mutex.c	7;"	d	file:
+REPEAT_TIMES	src\thread\thread_mutex.c	6;"	d	file:
+THREAD_NUM	src\thread\thread_mutex.c	5;"	d	file:
+main	src\thread\thread_mutex.c	/^int main(){$/;"	f
+mutex	src\thread\thread_mutex.c	/^pthread_mutex_t mutex;$/;"	v
+thrd_func	src\thread\thread_mutex.c	/^void *thrd_func(void *arg){$/;"	f
+DELAY	src\thread\thread_sem.c	8;"	d	file:
+REPEAT_TIMES	src\thread\thread_sem.c	7;"	d	file:
+THREAD_NUM	src\thread\thread_sem.c	6;"	d	file:
+main	src\thread\thread_sem.c	/^int main(){$/;"	f
+sem	src\thread\thread_sem.c	/^sem_t sem[THREAD_NUM];$/;"	v
+thrd_func	src\thread\thread_sem.c	/^void *thrd_func(void *arg){$/;"	f
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.7	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/

@@ -11,7 +11,7 @@
 #include <arpa/inet.h>
 #include <syslog.h>
  
-#define BUFFER_SIZE 400
+#define BUFFER_SIZE 20
 #define PACKET_DELAY 30
 #define PACK_NUM 100
 #define THREAD_NUM 100
