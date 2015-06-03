@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
             exit(1);
         }
     }else{
-        memcpy(dst.sin_addr, target->h_addr_list[0], target->h_length);
+        memcpy(&dst.sin_addr, target->h_addr_list[0], target->h_length);
         dst.sin_family=AF_INET;
         dst.sin_port=htons(atoi(argv[2]));
     }
