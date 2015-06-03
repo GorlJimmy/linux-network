@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     }
     // Clear data payload
     memset(buf, 0, sizeof(buf));
-    memset(&dst,0,sizeof(struct sockaddr_in));
+    memset(dst, 0, sizeof(struct sockaddr_in));
 
 
     if((target = gethostbyname(argv[1])) == NULL){
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
     
 	// Loop
     while(1){
-        if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)dst, sizeof(dst)) < 0){
+        if(sendto(sockfd, buf, sizeof(buf), 0, (struct sockaddr *)dst, sizeof(struct sockaddr_in)) < 0){
             fprintf(stderr, "Error during packet send.\n");
             perror("sendto error");
         }else
