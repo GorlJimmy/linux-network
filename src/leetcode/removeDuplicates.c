@@ -16,6 +16,8 @@ int main(void){
 		printf("%d ,",array[i]);
 	}
 	printf("%d}\n",array[len-1]);
+
+	return 0;
 }
 
 int remove_duplicates(int array[],int n){
