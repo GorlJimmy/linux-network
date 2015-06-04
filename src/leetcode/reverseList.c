@@ -46,7 +46,7 @@ struct listNode* reverse_list(struct listNode *head)
 	while(head != NULL){
 		struct listNode *elm = head;
 		
-		head->next = elm;
+		head = head->next;
 		
 		elm->next = new_list;
 		
