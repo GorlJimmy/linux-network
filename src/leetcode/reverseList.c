@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
         head->next = p; 
     }
 
-   	struct listNode *reversed=reverse_list(head);
+   	struct listNode reversed = reverse_list(head);
    	while(reversed!=NULL){
    		struct listNode *elm = reversed->next;
    		reversed=reversed->next;
@@ -42,7 +42,7 @@ struct listNode* reverse_list(struct listNode *head)
 	}
 	struct listNode *new_list=NULL;
 
-	while(head! = NULL){
+	while(head != NULL){
 		struct listNode *elm = head;
 		
 		head->next = elm;
