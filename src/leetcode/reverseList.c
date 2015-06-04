@@ -19,7 +19,7 @@ int main(int argc, char const *argv[])
     while(scanf("%d",&x) != EOF)
     {
         struct listNode *p;
-        p = (listNode *)malloc(sizeof(struct listNode)); 
+        p = (struct listNode *)malloc(sizeof(struct listNode)); 
         p->val = x;                    
         p->next = head->next;                 
         head->next = p; 
