@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
-struct listNode reverse_list(struct list *head)
+struct listNode reverse_list(struct listNode *head)
 {
 	if(head == NULL){
 		return NULL;
