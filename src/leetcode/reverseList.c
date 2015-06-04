@@ -7,7 +7,7 @@ struct listNode
 	struct listNode *next;
 };
 
-struct listNode reverse_list(struct listNode *head);
+struct listNode* reverse_list(struct listNode *head);
 
 
 int main(int argc, char const *argv[])
