@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 
-int remove_duplicates(int[] array,int n);
+int remove_duplicates(int array[],int n);
 
 
 int main(void){
