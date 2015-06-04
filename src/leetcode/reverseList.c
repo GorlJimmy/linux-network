@@ -13,13 +13,13 @@ struct listNode reverse_list(struct listNode *head);
 int main(int argc, char const *argv[])
 {
 	listNode *head;
-    head = (listNode *)malloc(sizeof(listNode));   
-    head->next = NULL;                      
+    head = (listNode *)malloc(sizeof(struct listNode));   
+    head->next = NULL;
     int x;
     while(scanf("%d",&x) != EOF)
     {
         listNode *p;
-        p = (listNode *)malloc(sizeof(listNode)); 
+        p = (listNode *)malloc(sizeof(struct listNode)); 
         p->val = x;                    
         p->next = head->next;                 
         head->next = p; 
