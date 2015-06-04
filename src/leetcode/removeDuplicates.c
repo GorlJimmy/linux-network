@@ -12,10 +12,10 @@ int main(void){
 
 	int i;
 	printf("Target Array is: \n{");
-	for(i=0;i<len;i++){
+	for(i = 0; i < len - 1; i++){
 		printf("%d ,",array[i]);
 	}
-	printf("}");
+	printf("%d}\n",array[len-1]);
 }
 
 int remove_duplicates(int array[],int n){
