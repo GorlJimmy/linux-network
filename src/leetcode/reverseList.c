@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
     head = (struct listNode *)malloc(sizeof(struct listNode));   
     head->next = NULL;
     int x;
-    while(scanf("%d",&x) != EOF)
+    for(x=0; x<10; x++)
     {
         struct listNode *p;
         p = (struct listNode *)malloc(sizeof(struct listNode)); 
@@ -26,7 +26,12 @@ int main(int argc, char const *argv[])
     }
 
    	struct listNode* reversed = reverse_list(head);
-   
+	
+	while(reversed != NULL){
+		printf("%d\n",reversed->next->val);
+		
+		reversed = reversed->next;
+	}   
 
 	return 0;
 }
