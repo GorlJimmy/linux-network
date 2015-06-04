@@ -12,20 +12,20 @@ struct listNode reverse_list(struct listNode *head);
 
 int main(int argc, char const *argv[])
 {
-	listNode *head;
-    head = (listNode *)malloc(sizeof(struct listNode));   
+	struct listNode *head;
+    head = (struct listNode *)malloc(sizeof(struct listNode));   
     head->next = NULL;
     int x;
     while(scanf("%d",&x) != EOF)
     {
-        listNode *p;
+        struct listNode *p;
         p = (listNode *)malloc(sizeof(struct listNode)); 
         p->val = x;                    
         p->next = head->next;                 
         head->next = p; 
     }
 
-   	listNode *reversed=reverse_list(head);
+   	struct listNode *reversed=reverse_list(head);
    	while(reversed!=NULL){
    		struct listNode *elm = reversed->next;
    		reversed=reversed->next;
