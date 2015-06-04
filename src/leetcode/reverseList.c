@@ -7,25 +7,25 @@ typedef struct listNode
 	struct listNode *next;
 }listNode;
 
-listNode* reverse_list(listNode *head);
+struct listNode* reverse_list(struct listNode *head);
 
 
 int main(int argc, char const *argv[])
 {
-	listNode *head;
-    head = (listNode *)malloc(sizeof(listNode));   
+	struct listNode *head;
+    head = (struct listNode *)malloc(sizeof(struct listNode));   
     head->next = NULL;
     int x;
     for(x=0; x<10; x++)
     {
-        listNode *p;
-        p = (listNode *)malloc(sizeof(listNode)); 
+        struct listNode *p;
+        p = (struct listNode *)malloc(sizeof(struct listNode)); 
         p->data = x;                    
         p->next = head->next;                 
         head->next = p; 
     }
 
-   	listNode* reversed = reverse_list(head);
+   	struct listNode* reversed = reverse_list(head);
 	
 	while(reversed != NULL){
 		printf("%d\n",reversed->data);
@@ -36,15 +36,15 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
-listNode* reverse_list(listNode *head)
+struct listNode* reverse_list(struct listNode *head)
 {
 	if(head == NULL){
 		return NULL;
 	}
-	listNode *new_list=NULL;
+	struct listNode *new_list=NULL;
 
 	while(head != NULL){
-		listNode *elm = head;
+		struct listNode *elm = head;
 		
 		head = head->next;
 		
