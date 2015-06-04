@@ -1,34 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct listNode
+typedef int elemType
+typedef struct listNode
 {
-	int val;
+	elemType data;
 	struct listNode *next;
-};
+}listNode;
 
-struct listNode* reverse_list(struct listNode *head);
+listNode* reverse_list(listNode *head);
 
 
 int main(int argc, char const *argv[])
 {
-	struct listNode *head;
-    head = (struct listNode *)malloc(sizeof(struct listNode));   
+	listNode *head;
+    head = (listNode *)malloc(sizeof(listNode));   
     head->next = NULL;
     int x;
     for(x=0; x<10; x++)
     {
-        struct listNode *p;
-        p = (struct listNode *)malloc(sizeof(struct listNode)); 
-        p->val = x;                    
+        listNode *p;
+        p = (listNode *)malloc(sizeof(listNode)); 
+        p->data = x;                    
         p->next = head->next;                 
         head->next = p; 
     }
 
-   	struct listNode* reversed = reverse_list(head);
+   	listNode* reversed = reverse_list(head);
 	
 	while(reversed != NULL){
-		printf("%d\n",reversed->val);
+		printf("%d\n",reversed->data);
 		
 		reversed = reversed->next;
 	}   
@@ -36,15 +36,15 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
-struct listNode* reverse_list(struct listNode *head)
+listNode* reverse_list(listNode *head)
 {
 	if(head == NULL){
 		return NULL;
 	}
-	struct listNode *new_list=NULL;
+	listNode *new_list=NULL;
 
 	while(head != NULL){
-		struct listNode *elm = head;
+		listNode *elm = head;
 		
 		head = head->next;
 		
@@ -54,3 +54,4 @@ struct listNode* reverse_list(struct listNode *head)
 	}
 	return new_list;
 }
+
