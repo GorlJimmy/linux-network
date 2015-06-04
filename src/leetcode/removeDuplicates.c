@@ -5,7 +5,7 @@ int remove_duplicates(int[] array,int n);
 
 
 int main(void){
-	int[] array = {1,2,3,3,3,4,4,5,5,6,7,8,9,10};
+	int array[] = {1,2,3,3,3,4,4,5,5,6,7,8,9,10};
 	int len = remove_duplicates(array,14);
 
 	printf("The Array length is: %d \n",len);
@@ -18,7 +18,7 @@ int main(void){
 	printf("}");
 }
 
-int remove_duplicates(int[] array,int n){
+int remove_duplicates(int array[],int n){
 
 	if(0 == n){
 		return 0;
