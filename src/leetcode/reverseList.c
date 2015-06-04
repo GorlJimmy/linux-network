@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
         head->next = p; 
     }
 
-   	struct listNode reversed = reverse_list(head);
+   	struct listNode* reversed = reverse_list(head);
    
 
 	return 0;
