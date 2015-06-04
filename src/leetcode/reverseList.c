@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
    	struct listNode* reversed = reverse_list(head);
 	
 	while(reversed != NULL){
-		printf("%d\n",reversed->next->val);
+		printf("%d\n",reversed->val);
 		
 		reversed = reversed->next;
 	}   
