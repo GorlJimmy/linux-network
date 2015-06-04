@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-typedef int elemType
-typedef struct listNode
+
+struct listNode
 {
-	elemType data;
+	int val;
 	struct listNode *next;
-}listNode;
+};
 
 struct listNode* reverse_list(struct listNode *head);
 
@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
     {
         struct listNode *p;
         p = (struct listNode *)malloc(sizeof(struct listNode)); 
-        p->data = x;                    
+        p->val = x;                    
         p->next = head->next;                 
         head->next = p; 
     }
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
    	struct listNode* reversed = reverse_list(head);
 	
 	while(reversed != NULL){
-		printf("%d\n",reversed->data);
+		printf("%d\n",reversed->val);
 		
 		reversed = reversed->next;
 	}   
@@ -54,4 +54,3 @@ struct listNode* reverse_list(struct listNode *head)
 	}
 	return new_list;
 }
-
