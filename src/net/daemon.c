@@ -18,6 +18,8 @@ void set_daemon(void){
 		default:
 			exit(0);
 			break;
+		case 0:
+			break;
 	}
 	setsid();
 	switch(fork()){
@@ -28,8 +30,10 @@ void set_daemon(void){
 		default:
 			exit(0);
 			break;
+		case 0:
+			break;
 	}
-	
+
 	for(;i<NOFILE;i++){
 		close(i);
 	}
