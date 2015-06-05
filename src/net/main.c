@@ -12,7 +12,7 @@ int main(void){
 	int sin_size;  
 	unsigned short portnum=0x8888; 
 	
-	setDaemon();  
+	set_daemon();  
 
 	printf("Hello,welcome to my server !\r\n");  
 	sfp = socket(AF_INET, SOCK_STREAM, 0);  

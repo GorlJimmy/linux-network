@@ -7,21 +7,29 @@
 
 #include "daemon.h"
 
-void setDaemon(void){
+void set_daemon(void){
 	int pid;
 	int i=0;	
-
-	if(pid=fork())
-		exit(0);
-	else if(pid<0)
-		exit(1);
+	switch(fork()){
+		case -1:
+			perror("fork error");
+			exit(1);
+			break;
+		default:
+			exit(0);
+			break;
+	}
 	setsid();
-
-	if(pid=fork())
-		exit(0);
-	else if(pid<0)
-		exit(1);
-
+	switch(fork()){
+		case -1:
+			perror("fork error");
+			exit(1);
+			break;
+		default:
+			exit(0);
+			break;
+	}
+	
 	for(;i<NOFILE;i++){
 		close(i);
 	}
