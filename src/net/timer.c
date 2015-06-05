@@ -29,7 +29,7 @@ sa.sin_port=htons(13);
 if(INADDR_ANY){
 	sa.sin_addr.s_addr=htons(INADDR_ANY);
 }
-if(bind(s,struct sockaddr *)&sa, sizeof(sa)){
+if(bind(s,(struct sockaddr *)&sa, sizeof(sa)){
 	perror("bind\n");
 	exit(1);
 }
