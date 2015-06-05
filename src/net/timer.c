@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
 	perror("socket error!\n");
 	exit(1);
 }
-memset(&sa,0, sizeof(sa));
+memset(&sa,0, sizeof(struct sockaddr_in));
 sa.sin_family=AF_INET;
 sa.sin_port=htons(13);
 if(INADDR_ANY){
