@@ -5,7 +5,6 @@ int create_file(char *file_name){
 
 }
 
-
 int open_file(char *file_name){
 
 	int fd=-1;
@@ -24,20 +23,27 @@ int read_file(int fd,void *buffer,size_t count){
 		exit(1);
 	}
 	while(true){
-		int size=read(fd,buffer,count);
+		int size = read(fd,buffer,count);
 		if(size < 0 ) break;
 
 	}
 
 	printf("Read done!\n");
-
-
 	return 0;
 }
 
 
 
 int write_file(int fd,void *buffer,size_t count){
+	if (fd < 0){
+		perror("write file error\n");
+		exit(1);
+	}
+	while(true){
+		int size = write(fd, buffer, sizeof(buffer));
+		if( size < 0 )break;
+	}
+	printf("write done\n");
 
 }
 

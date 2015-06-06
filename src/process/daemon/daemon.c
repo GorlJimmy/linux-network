@@ -7,9 +7,8 @@
 
 #include "daemon.h"
 
-void setDaemon(void){
+void set_daemon(void){
 
-	
 	switch(fork()){
 		case -1:
 			exit(1);
